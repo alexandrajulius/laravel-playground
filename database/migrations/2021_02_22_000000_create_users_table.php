@@ -11,9 +11,6 @@ class CreateQuotationsTable extends Migration
      *
      * @return void
      *
-    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) NOT NULL,
-    `quotation` text,
      */
     public function up()
     {

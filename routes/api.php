@@ -1,19 +1,46 @@
 <?php
 
+use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\UserController;
+use App\Models\Quotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+# Example
+Route::get(
+    '/quotes/barney',
+    [QuoteController::class, 'index']
+);
+
+# A citizen can be displayed with all their quotes
+Route::get(
+    '/quotes/{username}',
+    function (string $username) {
+        return (new QuoteController())->listQuotes($username);
+    }
+);
+
+# A quote can be added for a citizen
+Route::post(
+    '/add-quote/{username}/{quote}',
+    function (string $username, string $quote) {
+        return (new QuoteController())->addQuote($username, $quote);
+    }
+);
+
+# Citizens can be displayed as a list
+Route::get(
+    '/citizens',
+    [UserController::class, 'listCitizens']
+);
+
+# The names and addresses of citizens can be edited
+# /api/citizen/update/barneygumble
+Route::put(
+    '/citizen/update/{username}',
+    [UserController::class, 'update']
+);

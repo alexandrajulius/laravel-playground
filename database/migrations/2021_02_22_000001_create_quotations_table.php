@@ -11,12 +11,6 @@ class CreateUsersTable extends Migration
      *
      * @return void
      *
-     *   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-    `username` varchar(255) NOT NULL DEFAULT '',
-    `firstname` varchar(255) NOT NULL DEFAULT '',
-    `surname` varchar(255) NOT NULL DEFAULT '',
-    `address` varchar(255) NOT NULL,
-    PRIMARY KEY (`id`)
      */
     public function up()
     {
