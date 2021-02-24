@@ -5,25 +5,30 @@ declare(strict_types=1);
 namespace Tests\Context;
 
 use App\Http\Kernel;
+use Exception;
+use Laracasts\Behat\Context\KernelAwareContext;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Illuminate\Foundation\Application;
 
-abstract class AbstractContext
+abstract class AbstractContext implements KernelAwareContext
 {
-    private static $kernel;
+    private $kernel;
 
-    public function setUp(): void
+    public function setApp(HttpKernelInterface $kernel)
     {
-        $this->kernel();
+        $this->kernel = $kernel;
+        set_exception_handler(null);
+    }
+    public function getSession($name = null)
+    {
     }
 
-    protected function kernel(): Kernel
+    protected function kernel(): Application
     {
-        if (self::$kernel) {
-            return self::$kernel;
+        if ($this->kernel) {
+            return $this->kernel;
         }
 
-        $app = require __DIR__.'/../../bootstrap/app.php';
-        self::$kernel = $app->make(Kernel::class);
-
-        return self::$kernel;
+        throw new Exception('Kernel not set.');
     }
 }

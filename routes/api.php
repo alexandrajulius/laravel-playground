@@ -42,5 +42,7 @@ Route::get(
 # /api/citizen/update/barneygumble
 Route::put(
     '/citizen/update/{username}',
-    [UserController::class, 'update']
+    function (Request $request, string $username) {
+        return (new UserController())->update($request, $username);
+    }
 );

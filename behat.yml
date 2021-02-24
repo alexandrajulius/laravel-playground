@@ -1,4 +1,7 @@
 default:
+  extensions:
+    Laracasts\Behat:
+    # env_path: .env.behat
   suites:
     default:
       contexts:

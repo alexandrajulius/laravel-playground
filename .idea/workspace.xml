@@ -2,26 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38d1ca-4c83-4a4a-8855-98799870c81c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/QuoteController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/quotation.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/user.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Context/AbstractContext.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Context/QuotationContext.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Context/UserContext.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.behat" beforeDir="false" afterPath="$PROJECT_DIR$/.env.behat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/behat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/behat.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_22_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_22_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_22_000001_create_quotations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_22_000001_create_quotations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/example.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/example.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/user.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/user.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel.db" beforeDir="false" afterPath="$PROJECT_DIR$/laravel.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Context/AbstractContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Context/AbstractContext.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Context/QuotationContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Context/QuotationContext.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Context/UserContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Context/UserContext.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +177,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.env" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Context" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -195,8 +185,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests/Context" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/tests/Context" />
       <recent name="$PROJECT_DIR$/database/migrations" />
     </key>
   </component>
@@ -215,7 +205,7 @@
       <option name="presentableId" value="Default" />
       <updated>1613994159755</updated>
       <workItem from="1613994163378" duration="3496000" />
-      <workItem from="1614000019024" duration="45277000" />
+      <workItem from="1614000019024" duration="60633000" />
     </task>
     <servers />
   </component>
