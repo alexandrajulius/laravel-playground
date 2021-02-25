@@ -39,7 +39,6 @@ Route::get(
 );
 
 # The names and addresses of citizens can be edited
-# /api/citizen/update/barneygumble
 Route::put(
     '/citizen/update/{username}',
     function (Request $request, string $username) {

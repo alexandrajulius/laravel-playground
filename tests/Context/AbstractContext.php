@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Context;
 
-use App\Http\Kernel;
 use Exception;
 use Laracasts\Behat\Context\KernelAwareContext;
 use Symfony\Component\HttpKernel\HttpKernelInterface;

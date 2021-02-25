@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38d1ca-4c83-4a4a-8855-98799870c81c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuoteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/behat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/behat.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/user.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/user.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel.db" beforeDir="false" afterPath="$PROJECT_DIR$/laravel.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quotation.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/quotation.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-test.db" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-test.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Context/AbstractContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Context/AbstractContext.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Context/QuotationContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Context/QuotationContext.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Context/UserContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Context/UserContext.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +204,7 @@
       <option name="presentableId" value="Default" />
       <updated>1613994159755</updated>
       <workItem from="1613994163378" duration="3496000" />
-      <workItem from="1614000019024" duration="60633000" />
+      <workItem from="1614000019024" duration="63841000" />
     </task>
     <servers />
   </component>

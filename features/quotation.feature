@@ -3,7 +3,8 @@ Feature: Quotations of Sheffield's citizens
     - A quote can be added to a citizen
 
     Scenario: The API returns a list of quotes for a citizen
-        Given I send a GET request "/api/quotes/barney.gumble"
+        Given "barney.gumble" exists in the database
+        And I send a GET request "/api/quotes/barney.gumble"
         Then I should get the following response
         """
         {"barney.gumble":{"quotes: ":"We want chilly-willy! We want chilly-willy!"}}
