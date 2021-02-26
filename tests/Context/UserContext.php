@@ -72,11 +72,11 @@ final class UserContext extends AbstractContext implements Context
     }
 
     /**
-     * @Given I send a GET request :url
+     * @Given I send a GET request :requestUrl
      */
-    public function iSendAGetRequest($url)
+    public function iSendAGetRequest($requestUrl)
     {
-        $request = Request::create($url);
+        $request = Request::create($requestUrl);
         $this->response = $this->kernel()->handle($request);
 
         Assert::assertEquals(

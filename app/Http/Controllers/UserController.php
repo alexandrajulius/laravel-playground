@@ -22,6 +22,22 @@ final class UserController
         return new Response('Citizen ' . $username . ' not found', 404);
     }
 
+    public function listCitizens(): Response
+    {
+        $rawUsers = DB::table('users')->distinct()->get();
+
+        $users = [];
+        foreach ($rawUsers as $rawUser) {
+            $users[$rawUser->id] = [
+                'firstname: ' => $rawUser->firstname,
+                'surname: ' => $rawUser->surname,
+                'address: ' => $rawUser->address
+            ];
+        }
+
+        return new Response(json_encode($users), 200);
+    }
+
     private function citizenExists(string $username): bool
     {
         $user = DB::table('users')
@@ -40,21 +56,5 @@ final class UserController
                     $column => $value
                 ]);
         }
-    }
-
-    public function listCitizens(): Response
-    {
-        $rawUsers = DB::table('users')->distinct()->get();
-
-        $users = [];
-        foreach ($rawUsers as $rawUser) {
-            $users[$rawUser->id] = [
-                'firstname: ' => $rawUser->firstname,
-                'surname: ' => $rawUser->surname,
-                'address: ' => $rawUser->address
-            ];
-        }
-
-        return new Response(json_encode($users), 200);
     }
 }
