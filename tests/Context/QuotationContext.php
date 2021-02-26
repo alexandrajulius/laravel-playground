@@ -31,7 +31,11 @@ final class QuotationContext extends AbstractContext implements Context
         $request = Request::create($url, 'POST');
         $this->response = $this->kernel()->handle($request);
 
-        Assert::assertEquals(200, $this->response->getStatusCode(), 'Status code is not 200');
+        Assert::assertEquals(
+            200,
+            $this->response->getStatusCode(),
+            'Status code is not 200'
+        );
     }
 
     /**
@@ -39,14 +43,14 @@ final class QuotationContext extends AbstractContext implements Context
      */
     public function theQuoteShouldBeAddedToTheCitizensQuotations()
     {
-        $expected = 'Updated quotations for citizen '.$this->citizen.' with quote "' . $this->quote . '"';
+        $expected = 'Updated quotations for citizen ' . $this->citizen . ' with quote "' . $this->quote . '"';
 
         Assert::assertEquals($expected, $this->response->getContent());
 
-        $this->resetDatabase();
+        $this->rollbackQuotation();
     }
 
-    public function resetDatabase(): void
+    public function rollbackQuotation(): void
     {
         $rawQuotes = $this->getAllQuotes();
 
@@ -58,8 +62,10 @@ final class QuotationContext extends AbstractContext implements Context
         }
 
         throw new RuntimeException(
-            sprintf('Quote "%s" has not been added to quotations.',
-                $this->quote)
+            sprintf(
+                'Quote "%s" has not been added to quotations.',
+                $this->quote
+            )
         );
     }
 

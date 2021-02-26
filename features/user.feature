@@ -1,6 +1,6 @@
 Feature: Citizens of Sheffield are Users
     - The names and addresses of users can be edited
-    - The API can return a list of Sheffield's
+    - The API can return a list of Sheffield's citizens
 
     Scenario: The names and addresses of a user can be edited
         Given "barney.gumble" exists in the database

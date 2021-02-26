@@ -32,12 +32,6 @@ Route::post(
     }
 );
 
-# Citizens can be displayed as a list
-Route::get(
-    '/citizens',
-    [UserController::class, 'listCitizens']
-);
-
 # The names and addresses of citizens can be edited
 Route::put(
     '/citizen/update/{username}',
@@ -45,3 +39,10 @@ Route::put(
         return (new UserController())->update($request, $username);
     }
 );
+
+# The API returns a list of Sheffield's citizens
+Route::get(
+    '/citizens',
+    [UserController::class, 'listCitizens']
+);
+

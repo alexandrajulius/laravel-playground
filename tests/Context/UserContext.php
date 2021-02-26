@@ -33,12 +33,12 @@ final class UserContext extends AbstractContext implements Context
     }
 
     /**
-     * @When I want to put the following payload on :column
+     * @When I want to put the following payload on :requestUrl
      */
-    public function iWantToPutTheFollowingPayloadOn(string $url, PyStringNode $jsonPayload)
+    public function iWantToPutTheFollowingPayloadOn(string $requestUrl, PyStringNode $requestPayload)
     {
-        $this->payload = $jsonPayload->getRaw();
-        $request = Request::create($url, 'PUT', [], [], [], [], $this->payload);
+        $this->payload = $requestPayload->getRaw();
+        $request = Request::create($requestUrl, 'PUT', [], [], [], [], $this->payload);
         $this->response = $this->kernel()->handle($request);
 
         Assert::assertEquals(
@@ -89,9 +89,9 @@ final class UserContext extends AbstractContext implements Context
     /**
      * @Then I should get the following response
      */
-    public function iShouldGetTheFollowingResponse(PyStringNode $string)
+    public function iShouldGetTheFollowingResponse(PyStringNode $responsePayload)
     {
-        Assert::assertEquals($string->getRaw(), $this->response->getContent());
+        Assert::assertEquals($responsePayload->getRaw(), $this->response->getContent());
     }
 
     private function normalize(Collection $updatedUser): array

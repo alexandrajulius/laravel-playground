@@ -18,16 +18,19 @@ final class QuoteController extends Controller
 
     public function listQuotes(string $username): Response
     {
-        $rawQuotes = $this->getRawQuotes($username);
+        if ($this->citizenExists($username)) {
+            $rawQuotes = $this->getRawQuotes($username);
+            $quotes = [];
+            foreach ($rawQuotes as $rawQuote) {
+                $quotes[$username] = [
+                    'quotes: ' => $rawQuote->quotation,
+                ];
+            }
 
-        $quotes = [];
-        foreach ($rawQuotes as $rawQuote) {
-            $quotes[$username] = [
-                'quotes: ' => $rawQuote->quotation,
-            ];
+            return new Response(json_encode($quotes), 200);
         }
 
-        return new Response(json_encode($quotes), 200);
+        return new Response('Citizen ' . $username . ' not found', 404);
     }
 
     public function addQuote(string $username, string $quote): Response
@@ -80,5 +83,14 @@ final class QuoteController extends Controller
         }
 
         return $quotes;
+    }
+
+    private function citizenExists(string $username): bool
+    {
+        $user = DB::table('users')
+            ->where('username', '=', $username)
+            ->get();
+
+        return $user !== null;
     }
 }
