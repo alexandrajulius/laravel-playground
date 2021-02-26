@@ -16,7 +16,7 @@ Route::get(
     [QuoteController::class, 'index']
 );
 
-# A citizen can be displayed with all their quotes
+# The API returns a list of quotes for a citizen
 Route::get(
     '/quotes/{username}',
     function (string $username) {

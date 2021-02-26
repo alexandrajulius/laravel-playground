@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Assert;
-use RuntimeException;
 
 final class UserContext extends AbstractContext implements Context
 {
@@ -26,7 +25,11 @@ final class UserContext extends AbstractContext implements Context
     {
         $this->originalUser = $this->getUser($username);
 
-        Assert::assertEquals($username, $this->originalUser[0]->username);
+        Assert::assertEquals(
+            $username,
+            $this->originalUser[0]->username,
+            'User ' . $username . ' does not exist.'
+        );
     }
 
     /**
@@ -38,7 +41,11 @@ final class UserContext extends AbstractContext implements Context
         $request = Request::create($url, 'PUT', [], [], [], [], $this->payload);
         $this->response = $this->kernel()->handle($request);
 
-        Assert::assertEquals(200, $this->response->getStatusCode(), 'Status code is not 200.');
+        Assert::assertEquals(
+            200,
+            $this->response->getStatusCode(),
+            'Status code is not 200.'
+        );
     }
 
     /**
@@ -52,12 +59,16 @@ final class UserContext extends AbstractContext implements Context
         foreach ($user[0] as $column => $columnValue) {
             foreach ($payload as $key => $payloadValue) {
                 if ($column === $key) {
-                    Assert::assertEquals($payloadValue, $columnValue, 'DB values do not match payload values.');
+                    Assert::assertEquals(
+                        $payloadValue,
+                        $columnValue,
+                        'DB values do not match payload values.'
+                    );
                 }
             }
         }
 
-        $this->resetUser($username);
+        $this->rollbackUser($username);
     }
 
     /**
@@ -68,7 +79,11 @@ final class UserContext extends AbstractContext implements Context
         $request = Request::create($url);
         $this->response = $this->kernel()->handle($request);
 
-        Assert::assertEquals(200, $this->response->getStatusCode(), 'Status code is not 200.');
+        Assert::assertEquals(
+            200,
+            $this->response->getStatusCode(),
+            'Status code is not 200.'
+        );
     }
 
     /**
@@ -94,7 +109,7 @@ final class UserContext extends AbstractContext implements Context
             ->get();
     }
 
-    private function resetUser(string $username): void
+    private function rollbackUser(string $username): void
     {
         list($originalUser, $payload) = $this->normalize($this->originalUser);
 

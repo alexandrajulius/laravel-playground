@@ -1,6 +1,6 @@
 Feature: Quotations of Sheffield's citizens
     - The API can return a list of quotes for a citizen
-    - A quote can be added to a citizen
+    - A quote can be added for a citizen
 
     Scenario: The API returns a list of quotes for a citizen
         Given "barney.gumble" exists in the database

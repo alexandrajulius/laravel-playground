@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4d38d1ca-4c83-4a4a-8855-98799870c81c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuoteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quotation.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/quotation.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-test.db" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-test.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Context/UserContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Context/UserContext.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +172,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/.env" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/.env&#10;/Users/alex/Dev/Katas/progression/simpson-quotes/vendor/laracasts/behat-laravel-extension/src/Context/KernelAwareInitializer.php" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -197,7 +201,7 @@
       <option name="presentableId" value="Default" />
       <updated>1613994159755</updated>
       <workItem from="1613994163378" duration="3496000" />
-      <workItem from="1614000019024" duration="65792000" />
+      <workItem from="1614000019024" duration="66695000" />
     </task>
     <servers />
   </component>

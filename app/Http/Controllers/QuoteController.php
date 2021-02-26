@@ -40,7 +40,11 @@ final class QuoteController extends Controller
         ]);
 
         return new Response(
-            sprintf('Updated quotations for citizen %s with quote "%s"', $username, $quote),
+            sprintf(
+                'Updated quotations for citizen %s with quote "%s"',
+                $username,
+                $quote
+            ),
             200
         );
     }
@@ -53,7 +57,9 @@ final class QuoteController extends Controller
             ->get();
 
         if ($userId === null) {
-            throw new ModelNotFoundException('User not found by ID ' . $userId);
+            throw new ModelNotFoundException(
+                'User not found by ID ' . $userId
+            );
         }
 
         return (int)$userId[0]->id;
@@ -68,7 +74,9 @@ final class QuoteController extends Controller
             ->get();
 
         if ($quotes === null) {
-            throw new ModelNotFoundException('No quotes present in table quotations.');
+            throw new ModelNotFoundException(
+                'No quotes present in table quotations for user ' . $username
+            );
         }
 
         return $quotes;
