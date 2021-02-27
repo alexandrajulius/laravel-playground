@@ -73,7 +73,7 @@ APP_ENV=test
 DB_DATABASE=/Full/Path/To/Your/testing/database-test.db
 ```
 
-Change /vendor/laracasts/behat-laravel-extension/src/Context/KernelAwareInitializer:rebootKernel() line 80 to
+Change `/vendor/laracasts/behat-laravel-extension/src/Context/KernelAwareInitializer:rebootKernel()` line 80 to
 ```
 # $this->context->getSession('laravel')->getDriver()->reboot($this->kernel = $laravel->boot());
 $this->kernel = $laravel->boot();
