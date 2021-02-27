@@ -21,8 +21,9 @@ $ composer install
 - Laravel8 is using Symfony5.
 - However, Symfony5 is not compatible with the latest Mink-Extension.
   That’s why we do not reference Mink in our behat.yml (nothing breaks this way).
-  Mink is a package that bootstraps a browser and creates HTML that the Application
-  would create. Mink provides useful built-in methods to traverse and validate the given HTML.
+  Mink is used for acceptance testing: it bootstraps a browser and creates the exact 
+  HTML that the Application would create. Mink provides useful built-in methods to 
+  traverse and validate the created HTML.
   It is fine not to use Mink here since we do not want to create
   acceptance tests for a REST API anyway.
 - Also `laracasts/behat-laravel-extension` is not compatible with Symfony5.
