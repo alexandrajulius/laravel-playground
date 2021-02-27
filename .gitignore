@@ -11,3 +11,14 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.idea
+.editorconfig
+.gitattributes
+.styleci.yml
+artisan
+database.txt
+package.json
+server.php
+webpack.mix.js
+resources
+
