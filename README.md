@@ -41,7 +41,7 @@ $ vendor/bin/behat features
 
 ## How to integrate Behat on your existing Laravel project
 
-# Laravel > 8
+### Laravel > 8
 
 In order to write Integration Tests with Behat on your existing Laravel 8 project,
 install the following packages and initialize Behat:
@@ -73,7 +73,7 @@ APP_ENV=test
 DB_DATABASE=/Full/Path/To/Your/testing/database-test.db
 ```
 
-# Laravel < 8
+### Laravel < 8
 
 For Laravel < 8 all the required Behat packages should be compatible. 
 No code changes in vendor are required and Mink can be used.
