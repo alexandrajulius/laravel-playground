@@ -1,7 +1,24 @@
-## About Behat on Laravel8
+## How to run
 
-In order to write Integration Tests with Behat on Laravel 8 install 
-the following packages and initialize Behat:
+Dependencies:
+```
+PHP 7.4+
+composer
+Laravel 8
+Behat
+sqlite
+```
+Clone the repository, download the precompiled binaries for sql lite 
+
+$ composer install
+
+
+
+
+## How to integrate Behat on Laravel 8
+
+In order to write Integration Tests with Behat on your existing Laravel project,
+install the following packages and initialize Behat:
 
 ```
 $ composer require behat/behat
@@ -34,13 +51,17 @@ DB_DATABASE=/Full/Path/To/Your/testing/database-test.db
 
 - Laravel8 is using Symfony5.
 - However, Symfony5 is not compatible with the latest Mink-Extension.
-  That’s why we do not reference Mink in behat.yml (nothing breaks this way)
+  That’s why we do not reference Mink in our behat.yml (nothing breaks this way).
+  Mink is a package that bootstraps a browser and creates HTML that the Application
+  would create. Mink provides useful built-in methods to traverse and validate the given HTML.
   It is fine not to use Mink here since we do not want to create 
   acceptance tests for a REST API anyway.
 - Also `laracasts/behat-laravel-extension` is not compatible with Symfony5. 
   That’s why we have to change `/vendor/laracasts/behat-laravel-extension/src/Context/KernelAwareInitializer:rebootKernel()` to
-````
-# we do not need mink, that is why we do not need the driver
-#$this->context->getSession('laravel')->getDriver()->reboot($this->kernel = $laravel->boot());
+
+```
+# $this->context->getSession('laravel')->getDriver()->reboot($this->kernel = $laravel->boot());
 $this->kernel = $laravel->boot();
-``
+```
+
+- For Laravel < 8 all the above packages should be compatible.
