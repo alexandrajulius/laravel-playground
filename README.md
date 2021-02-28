@@ -47,10 +47,10 @@ In order to write Integration Tests with Behat on your existing Laravel 8 projec
 install the following packages and initialize Behat:
 
 ```
-$ composer require behat/behat
+$ composer require behat/behat --dev
 $ composer require behat/mink --dev --with-all-dependencies
 $ composer require behat/mink-extension --dev --with-all-dependencies
-$ composer require laracasts/behat-laravel-extension —dev
+$ composer require laracasts/behat-laravel-extension —-dev
 $ vendor/bin/behat --init
 ```
 
@@ -82,7 +82,7 @@ $this->kernel = $laravel->boot();
 ### Laravel < 8
 
 For Laravel < 8 all the required Behat packages should be compatible. 
-No code changes in vendor are required and Mink can be used.
+No code changes in `vendor` are required and Mink can be used.
 
 Follow the description on [https://github.com/laracasts/Behat-Laravel-Extension](https://github.com/laracasts/Behat-Laravel-Extension) 
 to integrate Behat into your existing Laravel < 8 project
