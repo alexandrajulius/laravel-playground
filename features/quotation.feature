@@ -3,7 +3,7 @@ Feature: Quotes of authors can be requested and added
     - A quote can be added for an author
 
     Scenario: The API returns a list of quotes for an author
-        Given "rudyard.kipling" exists in the database
+        Given "leo.tolstoy" exists in the database
         And I send a GET request "/api/quotes/leo.tolstoy"
         Then I should get the following response
         """
