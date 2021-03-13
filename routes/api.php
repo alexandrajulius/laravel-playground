@@ -33,7 +33,7 @@ Route::post(
 
 # The names and books of authors can be edited
 Route::put(
-    '`/author/update/{username}`',
+    '/author/update/{username}',
     function (Request $request, string $username) {
         return (new AuthorController())->update($request, $username);
     }

@@ -37,15 +37,20 @@ In your browser go to the specified url and query all authors that are available
 
 <img width="416" alt="authors_query" src="https://user-images.githubusercontent.com/23189414/111040476-62293b80-8433-11eb-8310-7d7dcd88c024.png">
 
+Or query all quotes that are available for Leo Tolstoy:
+
+<img width="791" alt="tolstoy_quotes" src="https://user-images.githubusercontent.com/23189414/111041185-6e16fc80-8437-11eb-8423-d1b214b8ab2a.png">
+
 ## Database
 
 In order to use sqlite, download the [precompiled binaries for sql lite](https://sqlite.org/download.html).
 
-Then in the root directory of this project type
+Then in the root directory of your project type
 ```
 $ sqlite3 laravel.db
 ```
-This enables you to access the database, find the tables `authors` and `quotations` and query their content:
+This enables you to access the database. 
+Find the tables `authors` and `quotations` and query their content:
 
 <img width="676" alt="authors_table" src="https://user-images.githubusercontent.com/23189414/111040317-be3f9000-8432-11eb-9432-00775c00c9d5.png">
 <img width="925" alt="quotations_table" src="https://user-images.githubusercontent.com/23189414/111040362-f8a92d00-8432-11eb-8014-acff38341c83.png">

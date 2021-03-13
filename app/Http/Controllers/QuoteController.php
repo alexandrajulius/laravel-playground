@@ -22,7 +22,7 @@ final class QuoteController extends Controller
             $rawQuotes = $this->getRawQuotes($username);
             $quotes = [];
             foreach ($rawQuotes as $rawQuote) {
-                $quotes[$username][] = $rawQuote->quotation;
+                $quotes[$username][$rawQuote->book][] = $rawQuote->quotation;
             }
 
             return new Response(json_encode($quotes), 200);
@@ -72,7 +72,7 @@ final class QuoteController extends Controller
     {
         $quotes =  DB::table('quotations')
             ->join('authors', 'quotations.user_id', '=', 'authors.id')
-            ->select('quotations.quotation')
+            ->select('quotations.quotation', 'quotations.book')
             ->where('authors.username', '=', $username)
             ->get();
 

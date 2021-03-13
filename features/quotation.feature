@@ -4,10 +4,10 @@ Feature: Quotes of authors can be requested and added
 
     Scenario: The API returns a list of quotes for an author
         Given "rudyard.kipling" exists in the database
-        And I send a GET request "/api/quotes/rudyard.kipling"
+        And I send a GET request "/api/quotes/leo.tolstoy"
         Then I should get the following response
         """
-        {"rudyard.kipling":["For Kim did nothing with an immense success.","Those who beg in silence starve in silence."]}
+        {"leo.tolstoy":{"Anna Karenina":["All happy families are alike; each unhappy family is unhappy in its own way.","Respect was invented to cover the empty place where love should be."],"War and Peace":["We can know only that we know nothing. And that is the highest degree of human wisdom."]}}
         """
 
     Scenario: A quote can be added for an author
