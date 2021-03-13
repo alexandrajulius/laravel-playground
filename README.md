@@ -1,14 +1,14 @@
 ## Specification
 
-This repository implements a simple Rest API in Laravel that allows to query various authors and quotations from their work.
-The API can respond to GET, POST and UPDATE. The API does not handle user authorization.
+This repository implements a simple Rest API in Laravel that allows to query various authors and some of their quotes.
+The API can respond to GET, POST and UPDATE and does not handle user authentication.
 
 ### Acceptance Criteria
 
-- The API returns a list of authors
-- The API returns a list of quotes for an author
-- A quote can be added for an author
-- The names and books of authors can be edited
+- The API can provide a list of authors (`/api/authors`).
+- For each author the API provides a list of quotes (`/api/quotes/<authorname>`).
+- A quote can be added for an author (`/api/add-quote/<authorname>/<quote>/<bookname>`).
+- An authors name and origin can be edited (`/api/author/update/<authorname>`). 
 
 Find all possible routes that this API can handle in [/routes/api.php](https://github.com/alexandrajulius/laravel-playground/blob/main/routes/api.php).
 
@@ -31,9 +31,10 @@ Start a server on your local with
 ```
 $ php artisan serve
 ```
-This command will provide the url that your server listens to.
+This command will provide the url that your server listens to (e.g. `http://127.0.0.1:8001`).
 In your browser go to the specified url and query all authors that are available in the database with 
-`http://127.0.0.1:8001/api/authors`
+`http://127.0.0.1:8001/api/authors`:
+
 <img width="416" alt="authors_query" src="https://user-images.githubusercontent.com/23189414/111040476-62293b80-8433-11eb-8310-7d7dcd88c024.png">
 
 ## Database
@@ -44,7 +45,8 @@ Then in the root directory of this project type
 ```
 $ sqlite3 laravel.db
 ```
-This enables you to access the database, find the tables `authors` and `quotations` and query their content.
+This enables you to access the database, find the tables `authors` and `quotations` and query their content:
+
 <img width="676" alt="authors_table" src="https://user-images.githubusercontent.com/23189414/111040317-be3f9000-8432-11eb-9432-00775c00c9d5.png">
 <img width="925" alt="quotations_table" src="https://user-images.githubusercontent.com/23189414/111040362-f8a92d00-8432-11eb-8014-acff38341c83.png">
 
@@ -54,6 +56,7 @@ Run the test suite in your root directory:
 ```
 $ vendor/bin/behat features
 ```
+
 <img width="1042" alt="authors_feature" src="https://user-images.githubusercontent.com/23189414/111040439-373ee780-8433-11eb-92e4-c82c2dd98fa8.png">
 <img width="880" alt="quotations_feature" src="https://user-images.githubusercontent.com/23189414/111040454-49208a80-8433-11eb-9cb4-d2b1960d688c.png">
 
