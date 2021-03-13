@@ -80,7 +80,7 @@ $ composer require laracasts/behat-laravel-extension —-dev
 $ vendor/bin/behat --init
 ```
 
-Next, within your project root, create a `behat.yml` file, and add:
+Next, within your project root, create a [behat.yml](https://github.com/alexandrajulius/laravel-playground/blob/main/behat.yml) file, and add:
 ```
 default:
   extensions:
