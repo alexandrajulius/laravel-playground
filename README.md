@@ -31,9 +31,9 @@ In your root directory start a server that will run on your local with:
 ```
 $ php artisan serve
 ```
-This command will provide the url that your server listens to (e.g. `http://127.0.0.1:8001`).
+This command will provide the url that your server listens to (e.g. `http://127.0.0.2:8001`).
 In your browser go to the specified url and query all authors that are available in the database with 
-`http://127.0.0.1:8001/api/authors`:
+`http://127.0.0.1:8002/api/authors`:
 
 <img width="416" alt="authors_query" src="https://user-images.githubusercontent.com/23189414/111040476-62293b80-8433-11eb-8310-7d7dcd88c024.png">
 
