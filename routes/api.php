@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\QuoteController;
-use App\Http\Controllers\UserController;
-use App\Models\Quotation;
+use App\Http\Controllers\AuthorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,11 +11,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 # Example
 Route::get(
-    '/quotes/barney',
+    '/quotes',
     [QuoteController::class, 'index']
 );
 
-# The API returns a list of quotes for a citizen
+# The API returns a list of quotes for an author
 Route::get(
     '/quotes/{username}',
     function (string $username) {
@@ -24,25 +23,25 @@ Route::get(
     }
 );
 
-# A quote can be added for a citizen
+# A quote can be added for an author
 Route::post(
-    '/add-quote/{username}/{quote}',
-    function (string $username, string $quote) {
-        return (new QuoteController())->addQuote($username, $quote);
+    '/add-quote/{username}/{quote}/{book}',
+    function (string $username, string $quote, string $book) {
+        return (new QuoteController())->addQuote($username, $quote, $book);
     }
 );
 
-# The names and addresses of citizens can be edited
+# The names and books of authors can be edited
 Route::put(
-    '/citizen/update/{username}',
+    '/author/update/{username}',
     function (Request $request, string $username) {
-        return (new UserController())->update($request, $username);
+        return (new AuthorController())->update($request, $username);
     }
 );
 
-# The API returns a list of Sheffield's citizens
+# The API returns a list of authors
 Route::get(
-    '/citizens',
-    [UserController::class, 'listCitizens']
+    '/authors',
+    [AuthorController::class, 'listAuthors']
 );
 

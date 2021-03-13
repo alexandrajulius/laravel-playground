@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Assert;
 
-final class UserContext extends AbstractContext implements Context
+final class AuthorContext extends AbstractContext implements Context
 {
     public Response $response;
 
@@ -23,12 +23,12 @@ final class UserContext extends AbstractContext implements Context
      */
     public function existsInTheDatabase(string $username)
     {
-        $this->originalUser = $this->getUser($username);
+        $this->originalUser = $this->getAuthor($username);
 
         Assert::assertEquals(
             $username,
             $this->originalUser[0]->username,
-            'User ' . $username . ' does not exist.'
+            'Author ' . $username . ' does not exist.'
         );
     }
 
@@ -53,7 +53,7 @@ final class UserContext extends AbstractContext implements Context
      */
     public function iShouldGetWithTheUpdatedData(string $username)
     {
-        $updatedUser = $this->getUser($username);
+        $updatedUser = $this->getAuthor($username);
         list($user, $payload) = $this->normalize($updatedUser);
 
         foreach ($user[0] as $column => $columnValue) {
@@ -68,7 +68,7 @@ final class UserContext extends AbstractContext implements Context
             }
         }
 
-        $this->rollbackUser($username);
+        $this->rollbackAuthor($username);
     }
 
     /**
@@ -102,21 +102,21 @@ final class UserContext extends AbstractContext implements Context
         return array($user, $payload);
     }
 
-    private function getUser(string $username): Collection
+    private function getAuthor(string $username): Collection
     {
-        return DB::table('users')
+        return DB::table('authors')
             ->where('username', '=', $username)
             ->get();
     }
 
-    private function rollbackUser(string $username): void
+    private function rollbackAuthor(string $username): void
     {
         list($originalUser, $payload) = $this->normalize($this->originalUser);
 
         foreach ($originalUser[0] as $column => $value) {
             foreach ($payload as $key => $payloadValue) {
                 if ($column === $key) {
-                    DB::table('users')
+                    DB::table('authors')
                         ->where('username', '=', $username)
                         ->update([
                             $column => $value

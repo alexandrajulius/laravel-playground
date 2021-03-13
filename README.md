@@ -1,3 +1,17 @@
+## Specification
+
+This repository implements a simple Rest API in Laravel that allows to query various authors and quotations from their work.
+The API can respond to GET, POST and UPDATE. The API does not handle user authorization.
+
+### Acceptance Criteria
+
+- The API returns a list of authors
+- The API returns a list of quotes for an author
+- A quote can be added for an author
+- The names and books of authors can be edited
+
+Find all possible routes that this API can handle in [/routes/api.php](https://github.com/alexandrajulius/laravel-playground/blob/main/routes/api.php).
+
 ## How to run
 
 Dependencies:
@@ -9,35 +23,39 @@ Behat
 sqlite 3
 ```
 
-- Clone the repository.
-- Download the [precompiled binaries for sql lite](https://sqlite.org/download.html) 
-  to be able to use the database.
-  
-Then run:
+Clone the repository, then run:
 ```
 $ composer install
 ```
-
-- Laravel8 is using Symfony5.
-- However, the latest Mink-Extension is not yet compatible with Symfony5.
-  That’s why we do not reference Mink in our behat.yml (nothing breaks this way).
-  Mink is used for acceptance testing: it bootstraps a browser and creates the exact 
-  HTML that the Application would create. Mink provides useful built-in methods to 
-  traverse and validate the created HTML.
-  It is fine not to use Mink here since we do not want to create
-  acceptance tests for a REST API anyway.
-- Also `laracasts/behat-laravel-extension` is not yet compatible with Symfony5.
-  That’s why we have to change `/vendor/laracasts/behat-laravel-extension/src/Context/KernelAwareInitializer:rebootKernel()` line 80 to
-
+Start a server on your local with
 ```
-# $this->context->getSession('laravel')->getDriver()->reboot($this->kernel = $laravel->boot());
-$this->kernel = $laravel->boot();
+$ php artisan serve
 ```
+This command will provide the url that your server listens to.
+In your browser go to the specified url and query all authors that are available in the database with 
+`http://127.0.0.1:8001/api/authors`
+<img width="416" alt="authors_query" src="https://user-images.githubusercontent.com/23189414/111040476-62293b80-8433-11eb-8310-7d7dcd88c024.png">
 
-Run the test suite in root:
+## Database
+
+In order to use sqlite, download the [precompiled binaries for sql lite](https://sqlite.org/download.html).
+
+Then in the root directory of this project type
+```
+$ sqlite3 laravel.db
+```
+This enables you to access the database, find the tables `authors` and `quotations` and query their content.
+<img width="676" alt="authors_table" src="https://user-images.githubusercontent.com/23189414/111040317-be3f9000-8432-11eb-9432-00775c00c9d5.png">
+<img width="925" alt="quotations_table" src="https://user-images.githubusercontent.com/23189414/111040362-f8a92d00-8432-11eb-8014-acff38341c83.png">
+
+## How to run the tests
+
+Run the test suite in your root directory:
 ```
 $ vendor/bin/behat features
 ```
+<img width="1042" alt="authors_feature" src="https://user-images.githubusercontent.com/23189414/111040439-373ee780-8433-11eb-92e4-c82c2dd98fa8.png">
+<img width="880" alt="quotations_feature" src="https://user-images.githubusercontent.com/23189414/111040454-49208a80-8433-11eb-9cb4-d2b1960d688c.png">
 
 ## How to integrate Behat on your existing Laravel project
 
@@ -73,7 +91,17 @@ APP_ENV=test
 DB_DATABASE=/Full/Path/To/Your/testing/database-test.db
 ```
 
-Change `/vendor/laracasts/behat-laravel-extension/src/Context/KernelAwareInitializer:rebootKernel()` line 80 to
+- Laravel8 is using Symfony5.
+- However, the latest Mink-Extension is not yet compatible with Symfony5.
+  That’s why we do not reference Mink in our behat.yml (nothing breaks this way).
+  Mink is used for acceptance testing: it bootstraps a browser and creates the exact
+  HTML that the Application would create. Mink provides useful built-in methods to
+  traverse and validate the created HTML.
+  It is fine not to use Mink here since we do not want to create
+  acceptance tests for a REST API anyway.
+- Also `laracasts/behat-laravel-extension` is not yet compatible with Symfony5.
+  That’s why we have to change `/vendor/laracasts/behat-laravel-extension/src/Context/KernelAwareInitializer:rebootKernel()` line 80 to
+
 ```
 # $this->context->getSession('laravel')->getDriver()->reboot($this->kernel = $laravel->boot());
 $this->kernel = $laravel->boot();

@@ -8,49 +8,49 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
-final class UserController
+final class AuthorController
 {
     public function update(Request $request, string $username): Response
     {
-        if ($this->citizenExists($username)) {
+        if ($this->authorExists($username)) {
             $payload = json_decode($request->getContent(), true);
-            $this->updateCitizen($payload, $username);
+            $this->updateAuthor($payload, $username);
 
-            return new Response('Citizen ' . $username . ' has been updated.', 200);
+            return new Response('Author ' . $username . ' has been updated.', 200);
         }
 
-        return new Response('Citizen ' . $username . ' not found', 404);
+        return new Response('Author ' . $username . ' not found', 404);
     }
 
-    public function listCitizens(): Response
+    public function listAuthors(): Response
     {
-        $rawUsers = DB::table('users')->distinct()->get();
+        $rawUsers = DB::table('authors')->distinct()->get();
 
         $users = [];
         foreach ($rawUsers as $rawUser) {
             $users[$rawUser->id] = [
-                'firstname: ' => $rawUser->firstname,
-                'surname: ' => $rawUser->surname,
-                'address: ' => $rawUser->address
+                'firstname' => $rawUser->firstname,
+                'surname' => $rawUser->surname,
+                'country' => $rawUser->country
             ];
         }
 
         return new Response(json_encode($users), 200);
     }
 
-    private function citizenExists(string $username): bool
+    private function authorExists(string $username): bool
     {
-        $user = DB::table('users')
+        $user = DB::table('authors')
             ->where('username', '=', $username)
             ->get();
 
         return $user !== null;
     }
 
-    private function updateCitizen(array $payload, string $username): void
+    private function updateAuthor(array $payload, string $username): void
     {
         foreach ($payload as $column => $value) {
-            DB::table('users')
+            DB::table('authors')
                 ->where('username', '=', $username)
                 ->update([
                     $column => $value

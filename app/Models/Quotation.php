@@ -20,5 +20,6 @@ class Quotation extends Authenticatable
     protected $fillable = [
         'user_id',
         'quotation',
+        'book',
     ];
 }

@@ -18,50 +18,50 @@ final class QuoteController extends Controller
 
     public function listQuotes(string $username): Response
     {
-        if ($this->citizenExists($username)) {
+        if ($this->authorExists($username)) {
             $rawQuotes = $this->getRawQuotes($username);
             $quotes = [];
             foreach ($rawQuotes as $rawQuote) {
-                $quotes[$username] = [
-                    'quotes: ' => $rawQuote->quotation,
-                ];
+                $quotes[$username][] = $rawQuote->quotation;
             }
 
             return new Response(json_encode($quotes), 200);
         }
 
-        return new Response('Citizen ' . $username . ' not found', 404);
+        return new Response('Author ' . $username . ' not found', 404);
     }
 
-    public function addQuote(string $username, string $quote): Response
+    public function addQuote(string $username, string $quote, string $book): Response
     {
-        $userId = $this->getUserId($username);
+        $userId = $this->getAuthorId($username);
 
         DB::table('quotations')->insert([
             'user_id' => $userId,
-            'quotation' => $quote
+            'quotation' => $quote,
+            'book' => $book,
         ]);
 
         return new Response(
             sprintf(
-                'Updated quotations for citizen %s with quote "%s"',
+                'Updated quotations for author %s with quote "%s" for book "%s"',
                 $username,
-                $quote
+                $quote,
+                $book
             ),
             200
         );
     }
 
-    private function getUserId(string $username): int
+    private function getAuthorId(string $username): int
     {
-        $userId = DB::table('users')
+        $userId = DB::table('authors')
             ->select('id')
             ->where('username', '=', $username)
             ->get();
 
         if ($userId === null) {
             throw new ModelNotFoundException(
-                'User not found by ID ' . $userId
+                'Author not found by ID ' . $userId
             );
         }
 
@@ -71,23 +71,23 @@ final class QuoteController extends Controller
     private function getRawQuotes(string $username): Collection
     {
         $quotes =  DB::table('quotations')
-            ->join('users', 'quotations.user_id', '=', 'users.id')
+            ->join('authors', 'quotations.user_id', '=', 'authors.id')
             ->select('quotations.quotation')
-            ->where('users.username', '=', $username)
+            ->where('authors.username', '=', $username)
             ->get();
 
         if ($quotes === null) {
             throw new ModelNotFoundException(
-                'No quotes present in table quotations for user ' . $username
+                'No quotes present in table quotations for author ' . $username
             );
         }
 
         return $quotes;
     }
 
-    private function citizenExists(string $username): bool
+    private function authorExists(string $username): bool
     {
-        $user = DB::table('users')
+        $user = DB::table('authors')
             ->where('username', '=', $username)
             ->get();
 

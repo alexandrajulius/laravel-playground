@@ -3,7 +3,7 @@
 namespace Tests\Context;
 
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\PyStringNode;
+use Behat\Gherkin\Node\TableNode;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -13,21 +13,21 @@ use RuntimeException;
 
 final class QuotationContext extends AbstractContext implements Context
 {
+    const AUTHOR_USERNAME = 'AUTHOR USERNAME';
+    const QUOTE = 'QUOTE';
+    const BOOK = 'BOOK';
     public Response $response;
-
-    public string $quote;
-
-    public string $citizen;
+    public array $quote;
 
     /**
-     * @Given I want to add the quote :quote to the quotations of :citizen
+     * @Given I want to add a quote with the following properties
      */
-    public function iWantToAddTheQuoteToTheQuotationsOf($quote, $citizen)
+    public function iWantToAddAQuoteWithTheFollowingProperties(TableNode $table)
     {
+        $quote = $table->getColumnsHash()[0];
         $this->quote = $quote;
-        $this->citizen = $citizen;
 
-        $url = '/api/add-quote/' . $citizen . '/'. $quote;
+        $url = '/api/add-quote/' . $quote[self::AUTHOR_USERNAME] . '/'. $quote[self::QUOTE]. '/'. $quote[self::BOOK];
         $request = Request::create($url, 'POST');
         $this->response = $this->kernel()->handle($request);
 
@@ -39,12 +39,11 @@ final class QuotationContext extends AbstractContext implements Context
     }
 
     /**
-     * @Then the quote should be added to the citizen's quotations
+     * @Then the quote should be added to the author's quotations
      */
-    public function theQuoteShouldBeAddedToTheCitizensQuotations()
+    public function theQuoteShouldBeAddedToTheAuthorsQuotations()
     {
-        $expected = 'Updated quotations for citizen ' . $this->citizen . ' with quote "' . $this->quote . '"';
-
+        $expected = 'Updated quotations for author ' . $this->quote[self::AUTHOR_USERNAME] . ' with quote "' . $this->quote[self::QUOTE] . '" for book "' . $this->quote[self::BOOK] . '"';
         Assert::assertEquals($expected, $this->response->getContent());
 
         $this->rollbackQuotation();
@@ -55,8 +54,8 @@ final class QuotationContext extends AbstractContext implements Context
         $rawQuotes = $this->getAllQuotes();
 
         foreach ($rawQuotes as $rawQuote) {
-            if ($rawQuote->quotation === $this->quote) {
-                DB::table('quotations')->where('quotation', $this->quote)->delete();
+            if ($rawQuote->quotation === $this->quote[self::QUOTE]) {
+                DB::table('quotations')->where('quotation', $this->quote[self::QUOTE])->delete();
                 return;
             }
         }
@@ -64,7 +63,7 @@ final class QuotationContext extends AbstractContext implements Context
         throw new RuntimeException(
             sprintf(
                 'Quote "%s" has not been added to quotations.',
-                $this->quote
+                $this->quote[self::QUOTE]
             )
         );
     }
@@ -72,9 +71,9 @@ final class QuotationContext extends AbstractContext implements Context
     public function getAllQuotes(): Collection
     {
         return DB::table('quotations')
-            ->join('users', 'quotations.user_id', '=', 'users.id')
+            ->join('authors', 'quotations.user_id', '=', 'authors.id')
             ->select('quotations.quotation')
-            ->where('users.username', '=', $this->citizen)
+            ->where('authors.username', '=', $this->quote[self::AUTHOR_USERNAME])
             ->get();
     }
 }

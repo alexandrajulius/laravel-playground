@@ -5,4 +5,4 @@ default:
     default:
       contexts:
         - Tests\Context\QuotationContext
-        - Tests\Context\UserContext
+        - Tests\Context\AuthorContext
