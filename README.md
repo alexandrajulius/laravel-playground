@@ -8,7 +8,7 @@ The API can respond to GET, POST and UPDATE and does not handle user authenticat
 - The API can provide a list of authors (`/api/authors`).
 - For each author the API provides a list of quotes (`/api/quotes/<authorname>`).
 - A quote can be added for an author (`/api/add-quote/<authorname>/<quote>/<bookname>`).
-- An authors name and origin can be edited (`/api/author/update/<authorname>`). 
+- Author related data (name, country) can be edited (`/api/author/update/<authorname>`). 
 
 Find all possible routes that this API can handle in [/routes/api.php](https://github.com/alexandrajulius/laravel-playground/blob/main/routes/api.php).
 
@@ -20,14 +20,14 @@ PHP 7.4+
 composer
 Laravel 8
 Behat
-sqlite 3
+SQLite 3
 ```
 
 Clone the repository, then run:
 ```
 $ composer install
 ```
-Start a server on your local with
+In your root directory start a server that will run on your local with:
 ```
 $ php artisan serve
 ```
@@ -43,9 +43,9 @@ Or query all quotes that are available for Leo Tolstoy:
 
 ## Database
 
-In order to use sqlite, download the [precompiled binaries for sql lite](https://sqlite.org/download.html).
+In order to use SQLite, download the [precompiled binaries for SQLite](https://sqlite.org/download.html).
 
-Then in the root directory of your project type
+Then in the root directory of your project type:
 ```
 $ sqlite3 laravel.db
 ```
