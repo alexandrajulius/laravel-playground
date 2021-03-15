@@ -40,7 +40,7 @@ final class AuthorContext extends AbstractContext implements Context
         $this->payload = $requestPayload->getRaw();
         $request = Request::create($requestUrl, 'PUT', [], [], [], [], $this->payload);
         $this->response = $this->kernel()->handle($request);
-
+        echo $this->response->getContent();
         Assert::assertEquals(
             200,
             $this->response->getStatusCode(),

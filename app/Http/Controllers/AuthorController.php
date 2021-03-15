@@ -4,57 +4,26 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Author\AuthorFacade;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 
 final class AuthorController
 {
+    public $author;
+
+    public function __construct(AuthorFacade $author)
+    {
+        $this->author = $author;
+    }
+
     public function update(Request $request, string $username): Response
     {
-        if ($this->authorExists($username)) {
-            $payload = json_decode($request->getContent(), true);
-            $this->updateAuthor($payload, $username);
-
-            return new Response('Author ' . $username . ' has been updated.', 200);
-        }
-
-        return new Response('Author ' . $username . ' not found', 404);
+        return $this->author->updateAuthor($request, $username);
     }
 
     public function listAuthors(): Response
     {
-        $rawUsers = DB::table('authors')->distinct()->get();
-
-        $users = [];
-        foreach ($rawUsers as $rawUser) {
-            $users[$rawUser->id] = [
-                'firstname' => $rawUser->firstname,
-                'surname' => $rawUser->surname,
-                'country' => $rawUser->country
-            ];
-        }
-
-        return new Response(json_encode($users), 200);
-    }
-
-    private function authorExists(string $username): bool
-    {
-        $user = DB::table('authors')
-            ->where('username', '=', $username)
-            ->get();
-
-        return $user !== null;
-    }
-
-    private function updateAuthor(array $payload, string $username): void
-    {
-        foreach ($payload as $column => $value) {
-            DB::table('authors')
-                ->where('username', '=', $username)
-                ->update([
-                    $column => $value
-                ]);
-        }
+        return $this->author->listAuthors();
     }
 }

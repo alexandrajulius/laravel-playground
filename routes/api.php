@@ -1,5 +1,7 @@
 <?php
 
+use App\Author\AuthorFacade;
+use App\Author\AuthorFactory;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\AuthorController;
 use Illuminate\Http\Request;
@@ -35,7 +37,7 @@ Route::post(
 Route::put(
     '/author/update/{username}',
     function (Request $request, string $username) {
-        return (new AuthorController())->update($request, $username);
+        return (new AuthorController(new AuthorFacade(new AuthorFactory())))->update($request, $username);
     }
 );
 
