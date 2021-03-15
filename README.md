@@ -65,6 +65,10 @@ $ vendor/bin/behat features
 <img width="1042" alt="authors_feature" src="https://user-images.githubusercontent.com/23189414/111040439-373ee780-8433-11eb-92e4-c82c2dd98fa8.png">
 <img width="1043" alt="quotations_feature" src="https://user-images.githubusercontent.com/23189414/111042259-cef50380-843c-11eb-89a4-e56afa82a057.png">
 
+## Error Logging
+
+Find the log files in `/storage/logs/laravel.log`
+
 ## How to integrate Behat on your existing Laravel project
 
 ### Laravel > 8
