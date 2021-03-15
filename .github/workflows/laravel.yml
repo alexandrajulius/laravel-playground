@@ -27,13 +27,13 @@ jobs:
     - name: Create Database
       run: |
         mkdir -p database
-        touch database/database.sqlite
-    - name: Execute tests (Unit) via PHPUnit
+        touch database/laravel-test.sqlite
+    - name: Execute unit tests via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/laravel-test.sqlite
       run: vendor/bin/phpunit
-    - name: Execute tests (Feature tests) via Behat
+    - name: Execute integration tests via Behat
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/laravel-test.sqlite
