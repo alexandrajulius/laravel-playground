@@ -28,8 +28,6 @@ jobs:
       run: |
         mkdir -p database
         touch database/laravel-test.sqlite
-    - name: Start server
-      run: php artisan serve
     - name: Execute unit tests via PHPUnit
       env:
         DB_CONNECTION: sqlite
